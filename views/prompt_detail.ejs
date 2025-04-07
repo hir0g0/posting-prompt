@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= prompt.title %>プロンプト詳細</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- ヘッダーナビゲーション -->
+  <nav>
+    <div class="card-header">
+      <div class="icon">🫠</div>
+      <div class="model-name">プロンプトライブラリ</div>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <button onclick="location.href='/'">トップページ</button>
+    <button onclick="location.href='#formSection'" class="button">新規プロンプト投稿</button>
+    <button onclick="location.href='/';" class="button-primary">プロンプト一覧</button>
+  </nav>
+
+  <div class="main-content">
+    <!-- プロンプト詳細セクション -->
+    <section id="promptDetailView">
+      <button id="backButton" onclick="history.back()">← 前のプロンプトに戻る</button>
+      
+      <div class="prompt-header">
+        <h2 id="detailTitle"><%= prompt.title %></h2>
+        <div class="prompt-meta">
+          投稿者: <%= prompt.email.split('@')[0] %><br>
+          投稿日: <%= new Date(prompt.created_at).toLocaleDateString('ja-JP') %>
+        </div>
+      </div>
+      
+      <div class="prompt-description">
+        <h3>説明</h3>
+        <p id="detailContent"><%= prompt.description %></p>
+      </div>
+      
+      <div class="prompt-content">
+        <% if (prompt.system_prompt && prompt.system_prompt.trim() !== '') { %>
+          <div class="system-prompt">
+            <div class="prompt-header">
+              <h3>システムプロンプト</h3>
+              <button class="button" onclick="copyToClipboard('<%= prompt.system_prompt %>')">システムプロンプトをコピー</button>
+            </div>
+            <p id="detailContent"><%= prompt.system_prompt %></p>
+          </div>
+        <% } %>
+
+        <div class="user-prompt">
+          <div class="prompt-header">
+            <h3>ユーザープロンプト</h3>
+            <button class="button" onclick="copyToClipboard('<%= prompt.user_prompt %>')">ユーザープロンプトをコピー</button>
+          </div>
+          <p id="detailContent"><%= prompt.user_prompt %></p>
+        </div>
+      </div>
+      
+      <!-- プロンプト削除フォーム -->
+      <div class="prompt-actions">
+        <form id="deletePromptForm" action="/delete-prompt" method="POST" onsubmit="return confirm('このプロンプトを削除してよろしいですか？');">
+          <input type="hidden" name="id" value="<%= prompt.id %>">
+          <button type="submit" class="button button-secondary">プロンプトを削除する</button>
+        </form>
+      </div>
+      
+      <!-- プロンプトツリー表示 -->
+      <div id="promptTree">
+        <h3>プロンプトツリー</h3>
+
+        <div class="tree-container">
+          <!-- 親プロンプト -->
+          <div class="tree-row">
+            <span class="tree-label">Base Prompt</span>
+            <span class="tree-label-line"></span>
+            <% if (parentPrompt) { %>
+              <a href="/prompt?id=<%= parentPrompt.id %>" class="tree-link">
+                <%= parentPrompt.email.split('@')[0] %>/<%= parentPrompt.title %>
+              </a>
+            <% } else { %>
+              <span class="tree-link tree-badge">this prompt</span>
+            <% } %>
+              </div>
+        
+          <!-- 子プロンプト -->
+          <% if (parentPrompt) { %>
+            <div class="tree-node">
+              <div class="tree-row">
+                <span class="tree-label">Finetuned</span>
+                <span class="tree-label-line"></span>
+                <span class="tree-link tree-badge">this prompt</span>
+              </div>
+            </div>
+            <!-- 孫プロンプト -->
+            <div class="tree-child">
+              <% if (childPrompts && childPrompts.length > 0) { %>
+                <% childPrompts.forEach(function(child) { %> 
+                  <div class="tree-node">
+                      <div class="tree-row">
+                        <span class="tree-label">Finetunes</span>
+                        <span class="tree-label-line"></span>
+                        <a href="/prompt?id=<%= child.id %>" class="tree-link">
+                          <%= child.email.split('@')[0] %>/<%= child.title %>
+                        </a>
+                      </div>
+                  </div>
+                <% }); %>
+              <% } else { %>
+                <span class="tree-link">
+                  <font color="gray">No finetuned prompts</font>
+                </span>
+              <% } %>
+            </div>
+            <% } else { %>
+              <!-- 子プロンプト -->
+              <% if (childPrompts && childPrompts.length > 0) { %>
+                <% childPrompts.forEach(function(child) { %>
+                  <div class="tree-node">
+                      <div class="tree-row">
+                        <span class="tree-label">Finetunes</span>
+                        <span class="tree-label-line"></span>
+                        <a href="/prompt?id=<%= child.id %>" class="tree-link">
+                          <%= child.email.split('@')[0] %>/<%= child.title %>
+                        </a>
+                      </div>
+                  </div>
+                <% }); %>
+              <% } else { %>
+                <span class="tree-link">
+                  <font color="gray">No finetuned prompts</font>
+                </span>
+              <% } %>
+          <% } %>
+        </div>
+      </div>
+      
+      <!-- 派生プロンプト用フォーム -->
+      <div class="derive-prompt-section">
+        <h3>このプロンプトを改良する</h3>
+        <form id="derivePromptForm" action="/submit-prompt" method="POST">
+          <input type="hidden" name="parentId" value="<%= prompt.id || '' %>">
+          
+          <div class="form-group">
+            <label class="form-label" for="title">タイトル</label>
+            <input type="text" id="title" name="title" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="email">メールアドレス</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="description">説明</label>
+            <textarea id="description" name="description" class="form-textarea" rows="3" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="systemPrompt">システムプロンプト</label>
+            <textarea id="systemPrompt" name="systemPrompt" class="form-textarea" rows="4" required><%= prompt.system_prompt || '' %></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="userPrompt">ユーザープロンプト</label>
+            <textarea id="userPrompt" name="userPrompt" class="form-textarea" rows="6" required><%= prompt.user_prompt %></textarea>
+          </div>
+          
+          <button type="submit" class="button button-primary">派生プロンプトを投稿する</button>
+        </form>
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          alert('コピーしました！');
+        })
+        .catch(err => {
+          console.error('コピーに失敗しました:', err);
+          alert('コピーに失敗しました。');
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 派生プロンプトフォームの送信処理（既存のものはそのまま）
+      document.getElementById('derivePromptForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData
+          });
+          
+          if (response.ok) {
+            alert("プロンプトが正常に送信されました！");
+            location.href = "/";
+          } else {
+            alert("送信に失敗しました。");
+          }
+        } catch (error) {
+          console.error("エラー:", error);
+          alert("エラーが発生しました。");
+        }
+      });
+      // 削除プロンプトフォームの送信処理（詳細表示中のプロンプトを削除）
+      const deleteForm = document.getElementById('deletePromptForm');
+      if (deleteForm) {
+        deleteForm.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const form = e.target;
+          const formData = new FormData(form);
+
+          try {
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: formData
+            });
+            
+            // もし response.ok でなければ、テキストとして取得してエラーとする
+            if (!response.ok) {
+              const text = await response.text();
+              throw new Error(text);
+            }
+            
+            const result = await response.json();
+            if (result.success) {
+              alert("プロンプトが削除されました！");
+              location.href = "/";
+            } else {
+              alert("削除に失敗しました: " + result.message);
+            }
+          } catch (error) {
+            console.error("エラー:", error);
+            alert("エラーが発生しました。");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
