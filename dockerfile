@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18
 
 # アプリケーションディレクトリを作成
 WORKDIR /usr/src/app

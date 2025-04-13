@@ -3,91 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>プロンプト共有サイト</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>OCAIS Prompt Community</title>
+  <link rel="stylesheet" href="/css/top-styles.css">
 </head>
 <body>
-  <!-- ヘッダーナビゲーション -->
-  <nav>
-    <div class="card-header">
-      <div class="icon">🫠</div>
-      <div class="model-name">プロンプトライブラリ</div>
-    </div>
-    <div style="flex-grow: 1;"></div>
-    <button onclick="showSection('formSection')">新規プロンプト投稿</button>
-    <button onclick="showSection('listSection')" class="button-primary">プロンプト一覧</button>
-  </nav>
-
-  <div class="main-content">
-    <!-- タブナビゲーション -->
-    <div class="tab-nav">
-      <button class="tab-button active">プロンプト一覧</button>
-      <!-- <button class="tab-button">人気のプロンプト</button> -->
-      <!-- <button class="tab-button">最近の投稿</button> -->
-    </div>
-
-    <!-- 投稿フォームセクション -->
-    <section id="formSection" style="display: none;">
-      <div class="card">
-        <h2>プロンプト投稿フォーム</h2>
-        <form id="promptForm">
-          <div class="form-group">
-            <label class="form-label" for="title">タイトル</label>
-            <input type="text" id="title" name="title" class="form-input" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">メールアドレス</label>
-            <input type="email" id="email" name="email" class="form-input" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="description">説明</label>
-            <textarea id="description" name="description" class="form-textarea" rows="3" required></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="systemPrompt">システムプロンプト</label>
-            <textarea id="systemPrompt" name="systemPrompt" class="form-textarea" rows="6" required></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="userPrompt">ユーザプロンプト</label>
-            <textarea id="userPrompt" name="userPrompt" class="form-textarea" rows="6" required></textarea>
-          </div>
-          <button type="submit" class="button button-primary">投稿する</button>
-        </form>
+  <div class="logo-container">
+    <h1 class="logo">
+      <span class="oaics">OAICS</span>
+      <span class="second-word">Prompt Community</span>
+    </h1>
+  </div>
+  
+  <div class="search-container">
+    <!-- 検索フォーム -->
+    <form action="search.html" method="get" id="search-form">
+      <div class="search-box">
+        <input type="text" class="search-input" name="query" placeholder="プロンプトを検索..." required>
+        <button type="submit" class="search-button">
+          <svg class="search-icon" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+          </svg>
+        </button>
       </div>
-    </section>
-
-    <!-- 一覧セクション -->
-    <section id="listSection" style="display: none;">
-
-      <!-- ライブラリ情報 -->
-      <div class="access-card">
-        <h3>プロンプトライブラリ</h3>
-        <p>このリポジトリは公開されており、誰でも投稿・閲覧できます。</p>
-      </div>
-
-      <!-- 検索フォーム -->
-      <input type="text" id="searchInput" placeholder="プロンプトを検索..." />
-      
-      <!-- プロンプトカード一覧 -->
-      <div id="promptCards" class="prompt-cards"></div>
-    </section>
-
-    <!-- 詳細表示セクション -->
-    <section id="promptDetailView" style="display: none;">
-      <button id="backButton">← 一覧に戻る</button>
-      <h2 id="detailTitle"></h2>
-      <p id="detailDescription"></p>
-      <pre id="detailContent"></pre>
-      
-      <!-- プロンプトツリー表示用のコンテナ -->
-      <div id="promptTree">
-        <h3>関連プロンプト</h3>
-        <div id="promptTreeContent"></div>
-      </div>
-    </section>
+    </form>
+  </div>
+  
+  <div class="action-cards">
+    <a href="form-section.html" class="action-card">
+      <h3>新規プロンプトを投稿</h3>
+      <p>新しいプロンプトを共有する。</p>
+    </a>
+    <a href="all-prompts.html" class="action-card">
+      <h3>すべて閲覧</h3>
+      <p>最近の投稿・いいねされたプロンプトを確認する。</p>
+    </a>
+    <a href="#" class="action-card">
+      <h3>カテゴリ別に閲覧</h3>
+      <p>カテゴリごとにプロンプトを確認する。</p>
+    </a>
   </div>
 
   <!-- スクリプト -->
-  <script src="scripts.js"></script>
+  <script src="./js/scripts.js"></script>
 </body>
 </html>

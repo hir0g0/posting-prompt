@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCAIS Prompt Community</title>
+  <link rel="stylesheet" href="/css/search-styles.css">
+</head>
+<body>
+    <!-- ヘッダーナビゲーション -->
+    <header class="header-nav">
+        <div class="nav-container">
+        <div class="nav-left">
+            <h1 class="site-title">
+            <a href="index.html" class="site-title-link">
+                <span class="oaics">OAICS</span>
+                <span class="second-word">Prompt Community</span>
+            </a>
+            </h1>
+        </div>
+        <div class="nav-center">
+            <form action="search.html" method="get" class="header-search-form">
+            <input type="text" name="query" class="header-search-input" placeholder="プロンプトを検索..." required>
+            <button type="submit" class="header-search-button">
+                <svg class="header-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+            </button>
+            </form>
+        </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- サイドバー -->
+        <aside class="sidebar">
+        <ul class="nav-list">
+            <li><button class="nav-button new-prompt-button" onclick="location.href='form-section.html'">新規プロンプト投稿</button></li>
+            <li><button class="nav-button" onclick="location.href='all-prompts.html'">すべてのプロンプトを閲覧</button></li>
+            <li><button class="nav-button" onclick="filterResults('category')">カテゴリ別に閲覧</button></li>
+        </ul>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <h2 id="search-title" style="color: rgb(73, 72, 72);">すべてのプロンプト</h2>
+            <div class="sort-tabs">
+                <!-- ソートタブは JavaScript で動的に生成 -->
+              </div>
+              <div class="search-results" id="search-results">
+                <!-- プロンプトは JavaScript で動的に生成 -->
+              </div>
+        </main>
+    </div>
+
+    <script src="./js/scripts.js"></script>
+  <script>
+    // ページロード時にすべてのプロンプトを表示
+    window.onload = () => {
+      loadAllPrompts();
+    };
+  </script>
+</body>
+</html>

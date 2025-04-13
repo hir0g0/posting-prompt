@@ -1,0 +1,69 @@
+/* フォーム全体のスタイル */
+#formSection {
+    margin-top: 20px;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* フォームのラベル */
+  .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  /* フォームの入力フィールド */
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: #4488c7;
+    outline: none;
+    box-shadow: 0 0 5px rgba(68, 136, 199, 0.5);
+  }
+  
+  /* テキストエリアのスタイル */
+  .form-textarea {
+    resize: vertical; /* 垂直方向のみリサイズ可能 */
+  }
+  
+  /* ボタンのスタイル */
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .button-primary {
+    background-color: #4488c7;
+    color: #fff;
+    border: none;
+  }
+  
+  .button-primary:hover {
+    background-color: #336699;
+  }
