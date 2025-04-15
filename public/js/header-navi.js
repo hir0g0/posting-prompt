@@ -18,28 +18,63 @@ function toggleMegaMenu(triggerId, menuId, otherTriggerId, otherMenuId) {
       menu.classList.add('show');
       trigger.classList.add('active');
     }
-  }
+}
   
 document.getElementById('categoryView').addEventListener('click', function (e) {
-e.stopPropagation();
-toggleMegaMenu('categoryView', 'categoryViewMenu', 'references', 'referencesMenu');
+    e.stopPropagation();
+    toggleMegaMenu('categoryView', 'categoryViewMenu', 'references', 'referencesMenu');
 });
 
 document.getElementById('references').addEventListener('click', function (e) {
-e.stopPropagation();
-toggleMegaMenu('references', 'referencesMenu', 'categoryView', 'categoryViewMenu');
+    e.stopPropagation();
+    toggleMegaMenu('references', 'referencesMenu', 'categoryView', 'categoryViewMenu');
+    });
+
+    // クリック外で閉じる
+    document.addEventListener('click', function (event) {
+    ['categoryViewMenu', 'referencesMenu'].forEach(menuId => {
+        const menu = document.getElementById(menuId);
+        if (menu.classList.contains('show')) {
+        menu.classList.remove('show');
+        }
+    });
+
+    ['categoryView', 'references'].forEach(id => {
+        document.getElementById(id).classList.remove('active');
+    });
 });
 
-// クリック外で閉じる
-document.addEventListener('click', function (event) {
-['categoryViewMenu', 'referencesMenu'].forEach(menuId => {
-    const menu = document.getElementById(menuId);
-    if (menu.classList.contains('show')) {
-    menu.classList.remove('show');
-    }
-});
-
-['categoryView', 'references'].forEach(id => {
-    document.getElementById(id).classList.remove('active');
-});
-});
+// 検索機能の実装
+document.addEventListener('DOMContentLoaded', function() {
+    const searchToggle = document.getElementById('searchToggle');
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const closeSearch = document.getElementById('closeSearch');
+    
+    // 検索ボタンクリック時
+    searchToggle.addEventListener('click', function() {
+      searchForm.classList.add('active');
+      searchInput.focus(); // 自動的にフォーカスを当てる
+    });
+    
+    // 閉じるボタンクリック時
+    closeSearch.addEventListener('click', function() {
+      searchForm.classList.remove('active');
+    });
+    
+    // ESCキーを押した時に検索窓を閉じる
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchForm.classList.contains('active')) {
+        searchForm.classList.remove('active');
+      }
+    });
+    
+    // 検索窓の外側をクリックした時に閉じる
+    document.addEventListener('click', function(e) {
+      const isClickInside = searchForm.contains(e.target) || searchToggle.contains(e.target);
+      
+      if (!isClickInside && searchForm.classList.contains('active')) {
+        searchForm.classList.remove('active');
+      }
+    });
+  });
