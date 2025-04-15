@@ -1,0 +1,217 @@
+/* 全体の基本スタイル */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+body {
+  font-family: 'Google Sans', Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* ヘッダーナビゲーション */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  height: 64px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.377); /* 下に影を追加 */
+}
+
+.logo {
+  font-size: 24px;
+  margin-right: 40px;
+}
+
+.home-link {
+  color: #7e7e7e;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  opacity: 0.8;
+}
+
+.oaics {
+  color: #237ee6;
+  font-weight: bold;
+}
+
+.second-word {
+  padding-left: 10px;
+  font-size: 22px;
+  font-weight: normal;
+  color: #6b6b6b;
+}
+
+/* メガメニュー */
+.nav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-right: auto; /* 右側の要素（検索ボタンなど）を右端に押しやる */
+}
+
+.nav-item {
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #6b6b6b;
+  text-decoration: none;
+  position: relative;
+  font-size: 14px;
+}
+
+.nav-item.active {
+  color: #1a73e8;
+  border-bottom: 2px solid #1a73e8;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+  margin-left: 8px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #6b6b6b;
+  border-bottom: 2px solid #6b6b6b;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.dropdown-toggle.active .arrow {
+  transform: rotate(-135deg); /* 上向き */
+  border-color: #1a73e8;
+}
+
+/* 検索ボタンなど右側の要素のためのコンテナ */
+.right-controls {
+  display: flex;
+  align-items: center;
+}
+
+.search-btn {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.search-icon {
+  width: 28px;
+  height: 28px;
+  fill: #7a7a7a; /* 検索アイコンの色 */
+}
+
+.subscribe-btn {
+  background-color: #1a73e8;
+  color: white;
+  padding: 8px 16px;
+  margin-right: 16px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Mega Menu Styles */
+.megamenu-container {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 100;
+  overflow: hidden;
+  max-height: 0;
+  padding: 0;
+  transition:
+    max-height 0.2s ease,
+    padding 0.4s ease;
+  pointer-events: none;
+}
+
+.megamenu-container.show {
+  max-height: 500px;
+  padding: 24px 0;
+  pointer-events: auto;
+}
+
+.megamenu {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-section {
+  flex: 1;
+  padding: 0 16px;
+}
+
+.menu-heading {
+  color: #5f6368;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-link {
+  color: #5f6368;
+  text-decoration: none;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.menu-link:hover {
+  color: #1a73e8;
+}
+
+.see-all {
+  display: flex;
+  align-items: center;
+  color: #1a73e8;
+  text-decoration: none;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.see-all .arrow {
+  margin-left: 4px;
+}
+
+.all-updates {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.all-updates a {
+  color: #1a73e8;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.all-updates .arrow {
+  margin-left: 4px;
+}

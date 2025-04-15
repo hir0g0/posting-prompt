@@ -8,26 +8,30 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   overflow-y: hidden;
 }
 
+/* トップページのスタイル */
 .logo-container {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   text-align: center;
 }
 
 .logo {
-  font-size: 4rem;
-  font-weight: bold;
   letter-spacing: -1px;
 }
 
-.oaics { color: #4488c7; }
+.oaics {
+  font-size: 5rem;
+  color: #237ee6;
+  font-weight: bold;
+}
 
 .second-word {
-  color: #7e7e7e;
+  color: #585858;
   font-weight: normal;
+  font-size: 3rem;
 }
 
 .search-container {
@@ -41,16 +45,17 @@ body {
 .search-box {
   display: flex;
   width: 98%;
-  border: 1px solid #A3C9F1; /* 検索ボックスの枠線 */
+  border: none; /* 検索ボックスの枠線 */
   border-radius: 9999px;
   overflow: hidden;
-  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.08);
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
   margin: 0 auto; /* 中央揃え */
 }
 
 .search-input {
   flex-grow: 1;
-  padding: 12px 20px;
+  padding: 14px 20px; /*上下*/
+  padding-left: 23px; /*テキストの開始位置*/
   border: none;
   outline: none;
   font-size: 16px;
@@ -58,37 +63,21 @@ body {
 }
 
 .search-button {
-  background-color: #A3C9F1; /* 検索ボタンの背景色 */
+  background-color: white;
   border: none;
+  border-radius: 9999px;
   padding: 0 20px;
   cursor: pointer;
 }
 
 .search-button:hover {
-  background-color: #5b9fe9; /* 検索ボタンのホバー時の色 */
+  box-shadow: 2px 2px 10px rgba(68, 73, 88, 0.28);
 }
 
 .search-icon {
-  width: 20px;
-  height: 20px;
-  fill: #FFFFFF; /* 検索アイコンの色 */
-}
-
-.language-options {
-  margin-bottom: 30px;
-  font-size: 14px;
-  color: #5A5A5A;
-}
-
-.radio-label {
-  margin: 0 10px;
-}
-
-.message {
-  font-size: 16px;
-  color: #5A5A5A;
-  margin-top: 10px;
-  text-align: center;
+  width: 28px;
+  height: 28px;
+  fill: #7a7a7a; /* 検索アイコンの色 */
 }
 
 /* アクションカードのコンテナ */
@@ -105,47 +94,31 @@ body {
 /* 各アクションカード */
 .action-card {
   background-color: #FFFFFF;
-  border: 1px solid #A3C9F1; /* プライマリーアクセント */
+  border: 1px solid #d3d3d3; /* プライマリーアクセント */
   border-radius: 8px;
-  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.1);
   padding: 20px;
-  text-align: center;
   width: calc(33.333% - 20px); /* 3列表示にする */
   max-width: 200px; /* カードの最大幅を設定 */
   height: 150px; 
   max-height: 200px;
-  text-decoration: none; /* リンクの下線を削除 */
-  color: #4A4A4A; /* 本文テキスト */
+  text-decoration: none; /* リンクの下線を消す */
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .action-card:hover {
-  transform: translateY(-2px); /* ホバー時に少し浮き上がる */
   box-shadow: 0 4px 12px rgba(32, 33, 36, 0.2); /* ホバー時のシャドウ */
-  border-color: #7BA7D7; /* ホバー時の枠線色 */
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 700px) {
-  .action-card {
-    width: calc(50% - 20px); /* 画面幅が狭い場合は2列表示 */
-  }
-}
-
-@media (max-width: 400px) {
-  .action-card {
-    width: 100%; /* 画面幅がさらに狭い場合は1列表示 */
-  }
+  border-color: #afafaf; /* ホバー時の枠線色 */
 }
 
 .action-card h3 {
+  text-align: center;
   font-size: 18px;
-  color: #2A6FB0; /* 見出しテキスト */
+  color: #237ee6; /* 見出しテキスト */
   margin-bottom: 30px;
 }
 
 .action-card p {
-  font-size: 14px;
+  font-size: 12px;
   color: #4A4A4A; /* 本文テキスト */
-  margin-bottom: 0;
+  text-align: justify;
 }
