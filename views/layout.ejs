@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <!-- 共通CSS -->
+  <!-- <link rel="stylesheet" href="/css/common.css"> -->
+
+  <!-- ページ・パーツ別CSS -->
+  <% if (stylesheets) { %>
+    <% stylesheets.forEach(file => { %>
+      <link rel="stylesheet" href="/css/<%= file %>.css">
+    <% }) %>
+  <% } %>
+</head>
+<body>
+  <!-- 共通ヘッダー -->
+  <%- include('partials/header') %>
+
+  <!-- ページ毎コンテンツ -->
+  <%- body %>
+
+  <!-- フッターを追加したい場合はここに include -->
+
+  <!-- ページ・パーツ別JS -->
+  <% if (scripts) { %>
+    <% scripts.forEach(file => { %>
+      <script src="/js/<%= file %>.js"></script>
+    <% }) %>
+  <% } %>
+</body>
+</html>
