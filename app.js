@@ -16,9 +16,9 @@ const promptsFilePath = path.join(__dirname, 'public', 'prompts.json');
 
 // TOPページ表示
 app.get('/', (req, res) => {
-  ejs.renderFile(path.join(__dirname, 'views/pages/home.ejs'), {}, {}, (err, str) => {
+  ejs.renderFile(path.join(__dirname, 'views/pages/top.ejs'), {}, {}, (err, str) => {
     if (err) {
-      return res.status(500).send('Error rendering home.ejs');
+      return res.status(500).send('Error rendering top.ejs');
     }
 
     res.render('layout-top', {
@@ -31,18 +31,34 @@ app.get('/', (req, res) => {
 });
 
 // 共通スタイルページ表示
-// すべてのプロンプトを表示するページ
-app.get('/all-prompt', (req, res) => {
-  ejs.renderFile(path.join(__dirname, 'views/pages/all-prompt.ejs'), {}, {}, (err, str) => {
+// home
+app.get('/home', (req, res) => {
+  ejs.renderFile(path.join(__dirname, 'views/pages/home.ejs'), {}, {}, (err, str) => {
     if (err) {
-      return res.status(500).send('Error rendering all-prompt.ejs');
+      return res.status(500).send('Error rendering home.ejs');
     }
 
     res.render('layout', {
       title: 'OCAIS Prompt Community',
       body: str,
-      stylesheets: ['header-styles', 'all-prompt'], 
-      scripts: ['header-navi', 'all-prompt']
+      stylesheets: ['header-styles', 'home'], 
+      scripts: ['header-navi', 'home']
+    });
+  });
+});
+
+// all-prompts
+app.get('/all-prompts', (req, res) => {
+  ejs.renderFile(path.join(__dirname, 'views/pages/all-prompts.ejs'), {}, {}, (err, str) => {
+    if (err) {
+      return res.status(500).send('Error rendering all-prompts.ejs');
+    }
+
+    res.render('layout', {
+      title: 'OCAIS Prompt Community',
+      body: str,
+      stylesheets: ['header-styles', 'home', 'all-prompts'],
+      scripts: ['header-navi', 'all-prompts']
     });
   });
 });

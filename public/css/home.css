@@ -1,0 +1,268 @@
+/* 全体のスタイル */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Google Sans', Arial, sans-serif;
+    line-height: 1.5;
+    color: #202124;
+    background-color: #ffffff;
+  }
+
+  a {
+    text-decoration: none;  /* 通常状態でアンダーラインを消す */
+    color: inherit;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  /* What's New バナー */
+  .whats-new-banner {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .update-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .update-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #4568dc;
+  }
+  
+  .update-text {
+    flex-grow: 1;
+    font-weight: 500;
+  }
+
+  /* コンテンツセクション共通 */
+  .content-section {
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    padding: 16px;
+    margin-bottom: 10px;
+    border-bottom: #f1f3f4 1px solid;
+  }
+  
+  .section-header {
+    font-size: 20px;
+    color: #202124;
+    margin-bottom: 40px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+  }
+  
+  .section-header h2 {
+    position: relative;
+  }
+
+  .view-more{
+    padding: 10px;
+  }
+
+  .view-more-text {
+    
+    font-size: 16px;
+    padding: 5px;
+    color: #1a73e8;
+    border-radius: 8px;
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+
+  .view-more-text:hover {
+    background-color: #1a73e8;
+    color: white;
+    box-shadow: #e0e0e0 0px 4px 8px;
+  }
+  
+  /* プロンプトグリッド共通 */
+  /* ピックアップカード */
+  .pickup-card-link {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .pickup-card-link:hover {
+    text-decoration: none;
+  }
+
+  .pickup-card {
+    display: grid;
+    flex: 1;
+    height: 100%;
+    margin: 0 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .pickup-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .pickup-image {
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    color: #202124;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .pickup-meta {
+    padding-left: 15px;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .pickup-date {
+    font-weight: 500;
+    color: #5f6368;
+    margin-right: 10px;
+  }
+
+  .pickup-category {
+    font-weight: 500;
+    color: #1a73e8;
+    text-transform: uppercase;
+  }
+
+  .pickup-title {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #202124;
+  }
+
+  /* プロンプトカード */
+  .prompt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    height: 100%;
+    flex:1;
+  }
+  
+  .prompt-card {
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .prompt-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .prompt-content {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+  
+  .prompt-meta {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1;
+  }
+  
+  .prompt-date {
+    font-weight: 500;
+    color: #5f6368;
+    margin-right: 10px;
+  }
+  
+  .prompt-category {
+    font-weight: 500;
+    color: #1a73e8;
+    text-transform: uppercase;
+  }
+  
+  .prompt-title {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #202124;
+    margin-bottom: 10px;
+  }
+
+  .prompt-title:hover {
+    text-decoration: underline;
+  }
+
+  /* カテゴリーセクション */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+  .categories-grid {
+    grid-template-columns: repeat(4, 1fr); /* PCでは4列表示 */
+  }
+  }
+  
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 15px;
+    border-radius: 8px;
+    background-color: transparent;
+    text-decoration: none;
+    transition: transform 0.3s, background-color 0.3s;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .category-card:hover {
+    background-color: #f0f4ff;
+  }
+  
+  .category-icon {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+  
+  .category-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 480px) {
+    .prompt-card {
+      flex-direction: column;
+    }
+    
+    .prompt-content {
+      padding-right: 0;
+      margin-bottom: 16px;
+      order: 2; /* モバイル表示では画像の下にコンテンツを表示 */
+    }
+    
+    .prompt-image {
+      width: 100%;
+      height: auto;
+      order: 1; /* モバイル表示では画像を上に表示 */
+    }
+  }
