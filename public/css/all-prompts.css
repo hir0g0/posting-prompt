@@ -78,7 +78,7 @@ body {
 .tab-content {
   padding: 20px;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: transparent;
 }
 
 .tab-panel {
@@ -137,7 +137,7 @@ body {
 .tab-content {
   padding: 20px;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: transparent;
 }
 
 .tab-panel {
@@ -161,22 +161,20 @@ body {
   text-decoration: none;
   color: inherit;
   display: block;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pickup-card-link:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .pickup-card {
   background-color: #fff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   height: 100%;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pickup-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .pickup-image {

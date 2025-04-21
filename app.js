@@ -79,6 +79,36 @@ app.get('/article', (req, res) => {
   });
 });
 
+// 新規: プロンプト詳細ページのルート追加
+app.get('/prompts/:id', (req, res) => {
+  fs.readFile(promptsFilePath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('プロンプトデータの読み込みに失敗しました');
+    }
+    let prompts;
+    try {
+      prompts = JSON.parse(data);
+    } catch (parseErr) {
+      return res.status(500).send('プロンプトデータのパースに失敗しました');
+    }
+    const prompt = prompts.find(p => String(p.id) === req.params.id);
+    if (!prompt) {
+      return res.status(404).send('プロンプトが見つかりません');
+    }
+    ejs.renderFile(path.join(__dirname, 'views/pages/prompt-detail.ejs'), { prompt }, {}, (err, str) => {
+      if (err) {
+        return res.status(500).send('Error rendering prompt-detail.ejs');
+      }
+      res.render('layout', {
+        title: 'Prompt Detail',
+        body: str,
+        stylesheets: ['header-styles', 'prompt-details'],
+        scripts: ['header-navi', 'prompt-detail']
+      });
+    });
+  });
+});
+
 // サーバー起動
 app.listen(3000, () => {
   console.log('Server is running on http://localhost:3000');

@@ -1,0 +1,46 @@
+<div class="prompt-container">
+    <h1><%= prompt.title %></h1>
+    
+    <div class="meta">
+      <span class="email"><%= prompt.email %></span> | 
+      <span class="date">作成日: <%= prompt.created_at %> | 更新日: <%= prompt.updated_at %></span> | 
+      <span class="likes">❤️ <%= prompt.likes %></span>
+    </div>
+    
+    <div class="image">
+      <img src="<%= prompt.image %>" alt="<%= prompt.title %>">
+    </div>
+    
+    <div class="description">
+      <p><%= prompt.description %></p>
+    </div>
+    
+    <div class="prompt-section">
+      <div class="prompt-title">システムプロンプト:</div>
+      <div class="prompt-content" id="system-prompt">
+        <div class="copy-text">
+          <%= prompt.system_prompt %>
+        </div>
+        <button class="copy-button" onclick="copyToClipboard('system-prompt')">コピー</button>
+      </div>
+    </div>
+    
+    <div class="prompt-section">
+      <div class="prompt-title">ユーザープロンプト:</div>
+      <div class="prompt-content" id="user-prompt">
+        <div class="copy-text">
+          <%= prompt.user_prompt %>
+        </div>
+        <button class="copy-button" onclick="copyToClipboard('user-prompt')">コピー</button>
+      </div>
+    </div>
+    
+    <div class="stats">
+      <div class="category">カテゴリ: <%= prompt.category %></div>
+      <div class="tags">
+        <% prompt.tags.forEach(function(tag) { %>
+          <span class="tag"><%= tag %></span>
+        <% }); %>
+      </div>
+    </div>
+</div>
