@@ -64,20 +64,20 @@ app.get('/all-prompts', (req, res) => {
 });
 
 // 各々のプロンプトを表示するページ
-app.get('/article', (req, res) => {
-  ejs.renderFile(path.join(__dirname, 'views/pages/article.ejs'), {}, {}, (err, str) => {
-    if (err) {
-      return res.status(500).send('Error rendering article.ejs');
-    }
+// app.get('/article', (req, res) => {
+//   ejs.renderFile(path.join(__dirname, 'views/pages/article.ejs'), {}, {}, (err, str) => {
+//     if (err) {
+//       return res.status(500).send('Error rendering article.ejs');
+//     }
 
-    res.render('layout', {
-      title: 'OCAIS Prompt Community',
-      body: str,
-      stylesheets: ['header-styles', 'article'],
-      scripts: ['header-navi', 'article']
-    });
-  });
-});
+//     res.render('layout', {
+//       title: 'OCAIS Prompt Community',
+//       body: str,
+//       stylesheets: ['header-styles', 'article'],
+//       scripts: ['header-navi', 'article']
+//     });
+//   });
+// });
 
 // 新規: プロンプト詳細ページのルート追加
 app.get('/prompts/:id', (req, res) => {
@@ -100,11 +100,32 @@ app.get('/prompts/:id', (req, res) => {
         return res.status(500).send('Error rendering prompt-detail.ejs');
       }
       res.render('layout', {
-        title: 'Prompt Detail',
+        title: 'OCAIS Prompt Community',
         body: str,
         stylesheets: ['header-styles', 'prompt-details'],
         scripts: ['header-navi', 'prompt-detail']
       });
+    });
+  });
+});
+
+// 新規: 検索結果ページのルート追加
+app.get('/search', (req, res) => {
+  const query = req.query.query || '';
+  if (!query) {
+    return res.status(400).send('検索クエリが指定されていません');
+  }
+
+  ejs.renderFile(path.join(__dirname, 'views/pages/search-results.ejs'), {}, {}, (err, str) => {
+    if (err) {
+      return res.status(500).send('Error rendering search-results.ejs');
+    }
+    res.render('layout', {
+      title: 'OCAIS Prompt Community',
+      body: str,
+      stylesheets: ['header-styles', 'search-results'],
+      scripts: ['header-navi', 'search-results'],
+      query: query
     });
   });
 });

@@ -7,31 +7,35 @@
       <span class="likes">❤️ <%= prompt.likes %></span>
     </div>
     
-    <div class="image">
+    <!-- <div class="image">
       <img src="<%= prompt.image %>" alt="<%= prompt.title %>">
-    </div>
+    </div> -->
     
     <div class="description">
       <p><%= prompt.description %></p>
     </div>
     
     <div class="prompt-section">
-      <div class="prompt-title">システムプロンプト:</div>
+      <div class="prompt-title">
+        <span>システムプロンプト</span>
+        <button class="copy-button" onclick="copyToClipboard('system-prompt')">コピー</button>
+      </div>
       <div class="prompt-content" id="system-prompt">
         <div class="copy-text">
           <%= prompt.system_prompt %>
         </div>
-        <button class="copy-button" onclick="copyToClipboard('system-prompt')">コピー</button>
       </div>
     </div>
     
     <div class="prompt-section">
-      <div class="prompt-title">ユーザープロンプト:</div>
+      <div class="prompt-title">
+        <span>ユーザープロンプト</span>
+        <button class="copy-button" onclick="copyToClipboard('user-prompt')">コピー</button>
+      </div>
       <div class="prompt-content" id="user-prompt">
         <div class="copy-text">
           <%= prompt.user_prompt %>
         </div>
-        <button class="copy-button" onclick="copyToClipboard('user-prompt')">コピー</button>
       </div>
     </div>
     
